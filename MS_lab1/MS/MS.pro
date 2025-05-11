@@ -10,12 +10,15 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
+    minmaxform.cpp \
     osnovmenu.cpp
 
 HEADERS += \
+    minmaxform.h \
     osnovmenu.h
 
 FORMS += \
+    minmaxform.ui \
     osnovmenu.ui
 
 TRANSLATIONS += \
@@ -27,3 +30,6 @@ CONFIG += embed_translations
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    resurs.qrc

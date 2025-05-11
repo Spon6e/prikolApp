@@ -2,6 +2,9 @@
 #define OSNOVMENU_H
 
 #include <QMainWindow>
+#include <QLabel>
+#include <QPixmap>
+#include "minmaxform.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -17,7 +20,12 @@ public:
     OsnovMenu(QWidget *parent = nullptr);
     ~OsnovMenu();
 
+
+private slots:
+    void on_MaxMin_clicked();
+
 private:
     Ui::OsnovMenu *ui;
+    MinMaxForm *minmaxform;
 };
 #endif // OSNOVMENU_H
