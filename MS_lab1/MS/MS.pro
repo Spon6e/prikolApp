@@ -11,14 +11,17 @@ CONFIG += c++17
 SOURCES += \
     main.cpp \
     minmaxform.cpp \
+    nlo.cpp \
     osnovmenu.cpp
 
 HEADERS += \
     minmaxform.h \
+    nlo.h \
     osnovmenu.h
 
 FORMS += \
     minmaxform.ui \
+    nlo.ui \
     osnovmenu.ui
 
 TRANSLATIONS += \

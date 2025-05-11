@@ -5,6 +5,7 @@
 #include <QLabel>
 #include <QPixmap>
 #include "minmaxform.h"
+#include "nlo.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -24,8 +25,11 @@ public:
 private slots:
     void on_MaxMin_clicked();
 
+    void on_NLO_clicked();
+
 private:
     Ui::OsnovMenu *ui;
     MinMaxForm *minmaxform;
+    NLO *nloform;
 };
 #endif // OSNOVMENU_H

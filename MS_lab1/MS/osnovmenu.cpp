@@ -6,7 +6,8 @@
 OsnovMenu::OsnovMenu(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::OsnovMenu),
-    minmaxform(nullptr)
+    minmaxform(nullptr),
+    nloform(nullptr)
 {
     ui->setupUi(this);
     QPixmap pixmap("C:/OOT/image.png");
@@ -32,5 +33,14 @@ void OsnovMenu::on_MaxMin_clicked()
         minmaxform=new MinMaxForm(this);
     }
     minmaxform->show();
+}
+
+
+void OsnovMenu::on_NLO_clicked()
+{
+    if(!nloform){
+        nloform=new NLO(this);
+    }
+    nloform->show();
 }
 
