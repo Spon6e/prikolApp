@@ -33,20 +33,39 @@ void MinMaxForm::calculateMinMax()
 
 void MinMaxForm::podsvet(const QVector<int>&row, const QVector<int>&col)
 {
+    int minSTO=INT_MIN;
+    int maxSTR=INT_MAX;
+    int numSTR = 0;
+    int numSTO = 0;
+    QLinearGradient gradient(1,0,0,1);
+    gradient.setColorAt(0, Qt::red);
+    gradient.setColorAt(1, Qt::green);
+    QBrush brush(gradient);
 
-    for (int i=0;i<height; i++){
-        for(int j=0; j<weight; j++){
-            if(ui->tableView->item(i, j)->text().toInt()==row[i])
-                ui->tableView->item(i, j)->setBackground(Qt::green);
+    for (int i=0; i<height; i++){
+        if (row[i]>minSTO){
+            numSTO=i;
+            minSTO=row[i];
+        }
+    }
+    for (int i=0; i<weight; i++){
+        if (col[i]<maxSTR){
+            numSTR=i;
+            maxSTR=col[i];
         }
     }
 
     for (int i=0;i<height; i++){
         for(int j=0; j<weight; j++){
-            if(ui->tableView->item(i, j)->text().toInt()==col[j])
+            if ((ui->tableView->item(i, j)->text().toInt()==row[i]) && (row[i]==minSTO))
                 ui->tableView->item(i, j)->setBackground(Qt::red);
+            if ((ui->tableView->item(i, j)->text().toInt()==col[j]) && (col[j]==maxSTR))
+                ui->tableView->item(i, j)->setBackground(Qt::green);
+            if ((ui->tableView->item(i, j)->text().toInt()==row[i]) && (ui->tableView->item(i, j)->text().toInt()==col[j]) && (col[j]==maxSTR) && (row[i]==minSTO))
+                ui->tableView->item(i, j)->setBackground(brush);
         }
     }
+
 }
 
 void MinMaxForm::on_ButtonTable_clicked()
