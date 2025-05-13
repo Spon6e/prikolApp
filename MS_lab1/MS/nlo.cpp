@@ -50,26 +50,30 @@ void NLO::NLOstr(const QVector<int> &row, const QVector<int> &col)
     for (int i=0; i<weight; i++){
         l1=INT_MIN;
         for (int j=0; j<height; j++){
-            if (row[j*height + i] > l1){
-                l1 = row[j*height + i];
-                num1=j;
-                qWarning() << l1 << "  " << j;
+            if (row[j*weight + i] > l1){
+                l1 = row[j*weight + i];
             }
         }
-        Nrow[num1]=1;
+        for(int j=0; j<height; j++){
+            if (row[j*weight+i]==l1){
+                Nrow[j]=1;
+            }
+        }
     }
 
     qWarning() << " ЭТО ВТОРОЙ " ;
     for (int i=0; i<height; i++){
         l1=INT_MIN;
         for (int j=0; j<weight; j++){
-            if (col[i*height + j] > l1){
-                l1 = col[i * height + j];
-                num1=j;
-                qWarning() << l1 << "  " << j;
+            if (col[i * weight + j] > l1){
+                l1 = col[i * weight + j];
             }
         }
-        Ncol[num1]=1;
+        for(int j=0; j<weight; j++){
+            if (col[i * weight + j]==l1){
+                Ncol[j]=1;
+            }
+        }
     }
     podsvet(Nrow, Ncol);
 }
@@ -84,8 +88,8 @@ void NLO::podsvet(const QVector<int> &row, const QVector<int> &col)
 
     for(int i=0; i<height; i++){
         for (int j=0; j<weight; j++){
-            if((row[i]==0) && (col[j]==0))
-                ui->tableNLO->item(i,j)->setBackground(brush);
+            if(row[i]==0 && col[j]==0)
+                ui->tableNLO->item(i,j)->setBackground(Qt::yellow);
             else if(row[i]==0)
                 ui->tableNLO->item(i, j)->setBackground(Qt::red);
             else if(col[j]==0)
@@ -106,6 +110,7 @@ void NLO::on_ButtonStrategy_clicked()
 void NLO::on_ButtonTable_clicked()
 {
     height = (ui->line_heigth->text()).toInt();
+    qWarning() << height << "tut";
     weight = (ui->line_width->text()).toInt();
     if ((height > 1) && (height < 6) && (weight > 1) && (weight < 6)){
         ui->tableNLO->setRowCount(height);
@@ -125,4 +130,3 @@ void NLO::on_ButtonTable_clicked()
         QMessageBox::critical(nullptr, "Ошибка", "Введите размер матрицы от 2х2 до 5х5!");
     }
 }
-
